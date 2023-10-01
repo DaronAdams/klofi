@@ -4,7 +4,9 @@ import klofi.utils.EngineConstants;
 
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
-
+/*
+Responsible for handling all the GLFW mouse events
+ */
 public class MouseListener {
     private double scrollX, scrollY;
     private double xPosition, yPosition, lastYPosition, lastXPosition;
