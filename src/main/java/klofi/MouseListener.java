@@ -1,5 +1,7 @@
 package klofi;
 
+import klofi.utils.EngineConstants;
+
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
@@ -7,7 +9,7 @@ public class MouseListener {
     private double scrollX, scrollY;
     private double xPosition, yPosition, lastYPosition, lastXPosition;
     private boolean isDragging;
-    private boolean mouseButtonPressed[] = new boolean[3];
+    private boolean mouseButtonPressed[] = new boolean[EngineConstants.NUMBER_OF_MOUSE_BUTTONS];
 
     private static MouseListener instance;
 
