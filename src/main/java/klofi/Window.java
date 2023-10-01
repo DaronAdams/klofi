@@ -1,5 +1,6 @@
 package klofi;
 
+import klofi.utils.Time;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
@@ -91,6 +92,9 @@ public class Window {
     }
 
     public void loop() {
+        float beginningTime = Time.getTime();
+        float endTime = Time.getTime();
+
         while (!glfwWindowShouldClose(glfwWindow)) {
             // Poll Events
             glfwPollEvents();
@@ -104,6 +108,10 @@ public class Window {
             }
 
             glfwSwapBuffers(glfwWindow);
+
+            endTime = Time.getTime();
+            float deltaTime = endTime - beginningTime;
+            beginningTime = endTime;
         }
     }
 }
