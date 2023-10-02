@@ -16,14 +16,30 @@ public class Window {
     private int width, height;
     private long glfwWindow;
     private String title;
+    public float r, g, b, a;
 
     // Singleton of the window object
     private static Window window;
+
+    private static Scene currentScene = null;
 
     private Window() {
         this.width = 1920;
         this.height = 1080;
         this.title = "klofi engine";
+    }
+
+    public static void changeScene(int newScene) {
+        switch (newScene) {
+            case 0:
+                currentScene = new LevelEditorScene();
+                break;
+            case 1:
+                currentScene = new LevelScene();
+                break;
+            default:
+                assert false : "Unknown scene" + newScene + ".";
+        }
     }
 
     public static Window getWindow() {
@@ -89,11 +105,14 @@ public class Window {
         // creates the GLCapabilities instance and makes the OpenGL
         // bindings available for use.
         GL.createCapabilities();
+
+        Window.changeScene(0);
     }
 
     public void loop() {
         float beginningTime = Time.getTime();
         float endTime = Time.getTime();
+        float deltaTime = -1.0f;
 
         while (!glfwWindowShouldClose(glfwWindow)) {
             // Poll Events
@@ -103,14 +122,14 @@ public class Window {
             glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
-            if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
-                System.out.println("Space is pressed");
+            if (deltaTime >= 0) {
+                currentScene.update(deltaTime);
             }
 
             glfwSwapBuffers(glfwWindow);
 
             endTime = Time.getTime();
-            float deltaTime = endTime - beginningTime;
+            deltaTime = endTime - beginningTime;
             beginningTime = endTime;
         }
     }
