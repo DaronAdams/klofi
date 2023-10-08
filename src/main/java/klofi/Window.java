@@ -55,7 +55,7 @@ public class Window {
     }
 
     public void run() {
-        System.out.println("Klofi Engine" + Version.getVersion() + "!");
+        System.out.println("Klofi Engine" + "0.0.1" + "!");
 
         init();
         loop();
