@@ -1,5 +1,7 @@
 package klofi;
 
+import components.FontRenderer;
+import components.SpriteRenderer;
 import klofi.utils.Time;
 import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
@@ -42,6 +44,7 @@ public class LevelEditorScene extends Scene {
 
     private Shader defaultShader;
     private Texture testTexture;
+    private GameObject testObject;
 
     public LevelEditorScene() {
 
@@ -49,6 +52,12 @@ public class LevelEditorScene extends Scene {
 
     @Override
     public void init() {
+        System.out.println("Creating testObject");
+        this.testObject = new GameObject("testObject");
+        this.testObject.addComponent(new SpriteRenderer());
+        this.testObject.addComponent(new FontRenderer());
+        this.addGameObjectToScene(this.testObject);
+
         this.camera = new Camera(new Vector2f(-200, -300));
         defaultShader = new Shader("assets/shaders/default.glsl");
         defaultShader.compile();
@@ -123,5 +132,9 @@ public class LevelEditorScene extends Scene {
         glBindVertexArray(0);
 
         defaultShader.detach();
+
+        for (GameObject gameObject : gameObjectsList) {
+            gameObject.update(dt);
+        }
     }
 }
