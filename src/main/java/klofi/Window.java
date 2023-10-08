@@ -53,7 +53,7 @@ public class Window {
     }
 
     public void run() {
-        System.out.println("Hello JWLGL" + Version.getVersion() + "!");
+        System.out.println("Klofi Engine" + Version.getVersion() + "!");
 
         init();
         loop();
