@@ -1,10 +1,13 @@
 package klofi;
 
+import renderer.Renderer;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Scene {
 
+    protected Renderer renderer = new Renderer();
     protected  Camera camera;
     protected List<GameObject> gameObjectsList = new ArrayList<>();
 
@@ -21,6 +24,7 @@ public abstract class Scene {
     public void start() {
         for (GameObject gameObject: gameObjectsList) {
             gameObject.start();
+            this.renderer.add(gameObject);
         }
         isRunning = true;
     }
@@ -31,7 +35,12 @@ public abstract class Scene {
         } else {
             gameObjectsList.add(gameObject);
             gameObject.start();
+            this.renderer.add(gameObject);
         }
+    }
+
+    public Camera camera() {
+        return this.camera;
     }
     public abstract void update(float deltaTime);
 }

@@ -14,7 +14,8 @@ A 2D Game Enginen written using LWJGL (Lightweight Java Game Library) and OpenGL
 - Camera
 - Shader Renderer
 - Mouse and Key Event handling system
-- More to come
+- Entity Component System (GameObjects and components)
+- Batch Rendering for better performance
 
 ## Badges
 

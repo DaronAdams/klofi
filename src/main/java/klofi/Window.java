@@ -54,6 +54,10 @@ public class Window {
         return Window.window;
     }
 
+    public static Scene getScene() {
+        return getWindow().currentScene;
+    }
+
     public void run() {
         System.out.println("Klofi Engine" + "0.0.1" + "!");
 
